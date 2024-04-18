@@ -1,4 +1,26 @@
-# 0.2.211117 SSE Trick or treat ¡Beta!
+# Version 0.2.230519 Satoshi Quest
+- Speed x2 in BSGS mode for main version
+
+# Version 0.2.230507 Satoshi Quest
+- fixed some variables names
+- fixed bug in addvanity (realloc problem with dirty memory)
+- Added option -6 to skip SHA256 checksum when you read the files (Improved startup process)
+- Added warning when you Endomorphism and BSGS, THEY DON'T WORK together!
+- Legacy version for ARM processor and other systems
+- remove pub2rmd
+
+# Version 0.2.230430 Satoshi Quest
+- fixed typos in README
+- Speed counter fixed for Compress search without endomorphism check https://github.com/albertobsd/keyhunt/tree/development#Speeds
+
+# Version 0.2.230428 Satoshi Quest
+- Merge of address and rmd160 speeds
+- Added option for endomorphism
+- Added SAVE bloom filter and table option for adddress, rmd160, minikeys and xpoint
+- Improved Makefile options
+- Updated random function to use the Linux RNG with the function getrandom
+
+# Version 0.2.211117 SSE Trick or treat ¡Beta!
 - Minikeys new sequential generator and x2 times more speed
 - third bloom filter check for bsgs 20% less memory usage
 

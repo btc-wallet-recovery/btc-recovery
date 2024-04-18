@@ -1,102 +1,153 @@
-keyhunt
+# keyhunt
+
 Tool for hunt privatekeys for crypto currencies that use secp256k1 elliptic curve
 
 Post: https://bitcointalk.org/index.php?topic=5322040.0
 
 Work for Bitcoin
+- address compress or uncompress
+- hashes rmd160 compress or uncompress
+- publickeys compress or uncompress
 
-address compress or uncompress
-hashes rmd160 compress or uncompress
-publickeys compress or uncompress
 Work for Ethereum
+- address
 
-address
-TL:DR
-Download and build
-Run against puzzle 66 (address mode)
+# TL:DR
+
+- Download and build
+- Run against puzzle 66 (address mode)
+
+```
 ./keyhunt -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
 
-You need to add -t numberThreads to get better speed
+```
 
-Run against Puzzle 125 (bsgs mode)
+You need to add `-t numberThreads` to get better speed
+
+- Run against Puzzle 125 (bsgs mode)
+
+```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R
-You need to add -t numberThreads and -k factor to get better speed
+```
 
-Free Code
+You need to add `-t numberThreads` and `-k factor` to get better speed
+
+## Free Code
+
 This code is free of charge, see the licence for more details. https://github.com/albertobsd/keyhunt/blob/main/LICENSE
 
-Although this project is a hobby for me, it still involves a considerable amount of work. If you would like to support this project, please consider donating at https://github.com/albertobsd/keyhunt#donations.
+Although this project is a hobby for me, it still involves a considerable amount of work.
+If you would like to support this project, please consider donating at https://github.com/albertobsd/keyhunt#donations.
 
-Disclaimer
-I made this tool as a generic tool for the Puzzles. I recommend to everyone to stay in puzzles
 
-Several of users request me to add support for ethereum and minikeys, I did it. But again i recommend only use this program for puzzles.
+# Disclaimer
 
-For regular users
+I made this tool as a generic tool for the Puzzles.
+I recommend to everyone to stay in puzzles
+
+Several of users request me to add support for ethereum and minikeys, I did it.
+But again i recommend only use this program for puzzles.
+
+## For regular users
+
 Please read the CHANGELOG.md to see the new changes
 
-Download and build
-This program was made in a linux environment. if you are windows user i strongly recommend to use WSL enviroment on Windows. it is available in the Microsoft store
+# Download and build
+
+This program was made in a linux environment.
+if you are windows user i strongly recommend to use WSL enviroment on Windows.
+it is available in the Microsoft store
 
 Please install on your system
 
-git
-build-essential
+- git
+- build-essential
+
 for legacy version also you are going to need:
 
-libssl-dev
-libgmp-dev
-On Debian based systems, run this commands to update your current enviroment and install the tools needed to compile it
+- libssl-dev
+- libgmp-dev
 
+On Debian based systems, run this commands to update your current enviroment
+and install the tools needed to compile it
+
+```
 apt update && apt upgrade
 apt install git -y
 apt install build-essential -y
 apt install libssl-dev -y
 apt install libgmp-dev -y
+```
+
 To clone the repository
 
+```
 git clone https://github.com/albertobsd/keyhunt.git
+```
+
 don't forget change to the keyhunt directory (But i'm not here to teach you linux commands)
 
+```
 cd keyhunt
+```
+
 First compile:
 
+```
 make
-if you have problems compiling the main version you can compile the legacy version
+```
 
+if you have problems compiling the `main` version you can compile the `legacy` version
+
+```
 make legacy
-and then execute with -h to see the help
+```
 
+
+and then execute with `-h` to see the help
+
+```
 ./keyhunt -h
-¡Beta!
-This version is still a beta version, there are a lot of things that can be fail or improve. This version also could have some bugs. please report it.
+```
 
-Modes
+## ¡Beta!
+
+This version is still a **beta** version, there are a lot of things that can be fail or improve.
+This version also could have some bugs. please report it.
+
+# Modes
+
 Keyhunt can work in diferent ways at different speeds.
 
 The current availables modes are:
+- address
+- rmd160
+- xpoint
+- bsgs
 
-address
-rmd160
-xpoint
-bsgs
-Experimental modes
-minikeys
-pub2rmd
-address mode
+## Experimental modes
+
+- minikeys
+- pub2rmd
+
+## address mode
+
 This is the most basic approach to work, in this mode your text file need to have a list of the publicaddress to be search.
 
-Example of address from solved puzzles, this file is already on the repository tests/1to32.txt
+Example of address from solved puzzles, this file is already on the repository `tests/1to32.txt`
 
+```
 1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH
 1CUNEBjYrCn2y1SdiUMohaKUi4wpP326Lb
 ...
+```
+
 To target that file we need to execute keyhunt with this line
 
-./keyhunt -m address -f tests/1to32.txt -r 1:FFFFFFFF
+`./keyhunt -m address -f tests/1to32.txt -r 1:FFFFFFFF`
 
 output:
-
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode address
 [+] Setting search for btc adddress
@@ -124,15 +175,20 @@ pubkey: 025cbdf0646e5db4eaa398f365f2ea7a0e3d419b7e0330e39ce92bddedcac4f9bc
 Address 19ZewH8Kk1PDbSNdJ97FP4EiCjTRaZMZQA
 rmd160 5dedfbf9ea599dd4e3ca6a80b333c472fd0b3f69
 (Output omitted)
-In this mode you can specify to seach only address compressed or uncompressed with -l compress or -l uncompress
+```
 
-Test your luck with the random parameter -R againts the puzzle #66
+In this mode you can specify to seach only address compressed or uncompressed with `-l compress` or  `-l uncompress`
 
+Test your luck with the random parameter `-R` againts the puzzle #66
+
+```
 ./keyhunt -m address -f tests/66.txt -b 66 -l compress -R -q -s 10
-Please note the change from -r 1:FFFFFFFF to -b 66, with -b you can specify the bit range
+```
+
+Please note the change from `-r 1:FFFFFFFF` to `-b 66`, with -b you can specify the bit range
 
 output:
-
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode address
 [+] Search compress only
@@ -149,14 +205,21 @@ output:
 [+] Loading data to the bloomfilter total: 0.03 MB
 [+] Sorting data ... done! 1 values were loaded and sorted
 ^C] Total 47634432 keys in 10 seconds: ~4 Mkeys/s (4763443 keys/s)
-vanity search.
-To search only one vanity address is with 1Good1 or with 1MyKey use the next command
+```
+
+### vanity search.
+
+To search only one vanity address is with `1Good1` or with `1MyKey` use the next command
 
 full command
 
+```
 ./keyhunt -m vanity -l compress -R -b 256 -v 1Good1 -v 1MyKey
+```
+
 output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode vanity
 [+] Search compress only
@@ -174,11 +237,17 @@ Vanity Private Key: 5adb8edf798172a8476f74f269d207b42862226746ff9c58f69007497c0d
 pubkey: 0273267f9764b022bb462b359a12917dbb3568e4e6cd3aa2e846b8c1d9cae0363a
 Address 1Good1mjxXjNqb8TucvKjyCuZfihMZgFcc
 rmd160 ad63f02cb68254ce12982e5e312bd51e8a239a84
-command to search multiple vanity addresses from a file -f filename.txt.
+```
 
+
+command to search multiple vanity addresses from a file `-f filename.txt`.
+
+```
 ./keyhunt -m vanity -f ~/main/keyhunt/vanitytargets.txt -l compress -R -b 256 -e -s 10 -q 
-Output:
+```
 
+Output:
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode vanity
 [+] Search compress only
@@ -193,25 +262,37 @@ Output:
 [+] Bloom filter for 225 elements.
 [+] Loading data to the bloomfilter total: 0.03 MB
 ^C] Total 58202112 keys in 10 seconds: ~5 Mkeys/s (5820211 keys/s)
-All the vanity address and his privatekeys will be saved in the file VANITYKEYFOUND.txt of your current directory
+```
 
-rmd160 mode
+All the vanity address and his privatekeys will be saved in the file `VANITYKEYFOUND.txt` of your current directory
+
+
+## rmd160 mode
+
 rmd stands for RIPE Message Digest (see https://en.wikipedia.org/wiki/RIPEMD )
 
 mode rmd160 work in the same way than address, but the diference is that file need to have hash rmd160 instead of addresses.
 
-example file tests/1to32.rmd :
 
+example file `tests/1to32.rmd` :
+
+```
 751e76e8199196d454941c45d1b3a323f1433bd6
 7dd65592d0ab2fe0d0257d571abf032cd9db93dc
 5dedfbf9ea599dd4e3ca6a80b333c472fd0b3f69
 9652d86bedf43ad264362e6e6eba6eb764508127
 ...
+```
+
 to target that file you need to execute the next line:
 
+```
 ./keyhunt -m rmd160 -f tests/1to32.rmd -r 1:FFFFFFFF -l compress -s 5
+```
+
 output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode rmd160
 [+] Search compress only
@@ -234,11 +315,18 @@ pubkey: 02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9
 Address 1CUNEBjYrCn2y1SdiUMohaKUi4wpP326Lb
 rmd160 7dd65592d0ab2fe0d0257d571abf032cd9db93dc
 (Output omitted)
+```
+
 test your luck with the next file for the puzzle #66
 
+
+```
 ./keyhunt -m rmd160 -f tests/66.rmd -b 66 -l compress -R -q
+```
+
 Output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode rmd160
 [+] Search compress only
@@ -254,19 +342,24 @@ Output:
 [+] Loading data to the bloomfilter total: 0.03 MB
 [+] Sorting data ... done! 1 values were loaded and sorted
 ^C] Total 70844416 keys in 15 seconds: ~4 Mkeys/s (4722961 keys/s)
-xpoint mode
+```
+
+## xpoint mode
+
 This method can target the X value of the publickey in the same way that the tool search for address or rmd160 hash, this tool can search for the X values
 
 The speed for this method is better than the speed for address or rmd160
 
 The input file can had one publickey per line compress or uncompress:
 
-Publickey Compress (66 hexcharacters)
-Publickey Uncompress (130 hexcharacters)
+- Publickey Compress (66 hexcharacters)
+- Publickey Uncompress (130 hexcharacters)
+
 Example input file:
 
-A few substracted values from puzzle 40
+A few substracted values from puzzle *40*
 
+```
 034eee474fe724cb631d19f24934e88016e4ef2aee80d086621d87d7f6066ff860 # - 453856235784
 0274241b684e7c31e7933510b510aa14de9ac88ec3635bdd35a3bcf1d16da210be # + 453856235784
 03abc6aff092b9a64bf69e00f4ec7a8b7ca51cfc6656732cbbc9f5674925b88609 # - 529328067324
@@ -276,12 +369,16 @@ A few substracted values from puzzle 40
 03de1df5d801bbd5e7d86577bf14950f732fd41e586945d06d19e0fdea41a37d62 # - 549755814000
 038d3711fd681e26c05b2f0cd423fa596e15054024e40add24a93bfa0c630531f1 # + 549755814000
 03a2efa402fd5268400c77c20e574ba86409ededee7c4020e4b9f0edbee53de0d4 # target
+```
+
+
 Now you can use keyhunt against some thousand values of the puzzle 40:
 
-./keyhunt -m xpoint -f tests/substracted40.txt -n 65536 -t 4 -b 40
+```./keyhunt -m xpoint -f tests/substracted40.txt -n 65536 -t 4 -b 40```
 
 Output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode xpoint
 [+] Threads : 4
@@ -299,19 +396,24 @@ pubkey: 0474241b684e7c31e7933510b510aa14de9ac88ec3635bdd35a3bcf1d16da210be7ad946
 Address 1CMg4mukBGVvid4ocTx5x5LEuCatKoHQRB
 rmd160 7c92500fa9d2ecbca5bdd61bb6a14a249669bae4
 
+```
+
 After the hit we need to search the substracted index and make a simple math operation to get the real privatek:
 
+```
 0274241b684e7c31e7933510b510aa14de9ac88ec3635bdd35a3bcf1d16da210be # + 453856235784
-The Operation is 800258a2ce hex (+/-) in this case + 453856235784 decimal equals to E9AE4933D6
+```
+The Operation is `800258a2ce` hex (+/-) in this case + `453856235784` decimal equals to `E9AE4933D6`
 
 This is an easy example, I been trying the puzzle 120 with more than 500 millions of substracted keys and no luck.
 
 Test you luck with the puzzle 120 with xpoint:
 
-./keyhunt -m xpoint -f tests/120.txt -t 4 -b 125 -R -q
+```./keyhunt -m xpoint -f tests/120.txt -t 4 -b 125 -R -q```
 
 Output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode xpoint
 [+] Threads : 4
@@ -326,18 +428,23 @@ Output:
 [+] Loading data to the bloomfilter total: 0.03 MB
 [+] Sorting data ... done! 1 values were loaded and sorted
 ^C] Total 462885888 keys in 30 seconds: ~15 Mkeys/s (15429529 keys/s)
-Endomorphism
-To enable endomorphism use -e
+```
 
-endomorphism is only enabled for address, rdm160 , vanity and xpoint
+## Endomorphism
 
-But what the heck is Endomorphism?
+To enable endomorphism use `-e`
+
+endomorphism is only enabled for `address`, `rdm160` , `vanity` and `xpoint`
+
+
+But what the heck is `Endomorphism`?
 
 In few words for elliptic curves, an endomorphism is a function that maps points on the curve to other points on the same curve.
 
-One kind of Endomorphism is the Point negation by example the privatekey from puzzle 64
+One kind of Endomorphism is the Point negation by example the privatekey from puzzle 64 
 
-000000000000000000000000000000000000000000000000f7051f27b09112d4 publickey 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d if we negated that private or publickey we get:
+000000000000000000000000000000000000000000000000f7051f27b09112d4 publickey 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
+if we negated that private or publickey we get:
 
 fffffffffffffffffffffffffffffffebaaedce6af48a03ac8cd3f651fa52e6d publickey 02100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
 
@@ -345,54 +452,74 @@ But if we negated this last value we get again the first value.
 
 There are some special values lambda y beta
 
+```
 lambda = 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 beta = 0x7ae96a2b657c07106e64479eac3434e99cf0497512f58995c1396c28719501ee
-For every privatekey K and its Point Q where Q = GK
+```
+
+For every privatekey K and its Point Q where Q = GK 
 
 Q = (x,y)
 
 We can multuply Q by lambda example:
 
+```
 Q * lambda = (x * beta mod p , y)
 Q*lambda is a Scalar Multiplication
 x*beta is just a Multiplication (Very fast
+```
+
 p is 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
 
 Example puzzle 64
 
-0x000000000000000000000000000000000000000000000000f7051f27b09112d4 publickey 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d 0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a publickey 03792bfa55bf659967951b21060c05c250cd261ec3ea02704815bfb1c5ccc800fd 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 publickey 0376cdf3e4f29b709454a95ba0fc4242edf5f5685be94b6b09d36bf91280da5de5
+0x000000000000000000000000000000000000000000000000f7051f27b09112d4 publickey 03100611c54dfef604163b8358f7b7fac13ce478e02cb224ae16d45526b25d9d4d
+0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a publickey 03792bfa55bf659967951b21060c05c250cd261ec3ea02704815bfb1c5ccc800fd
+0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 publickey 0376cdf3e4f29b709454a95ba0fc4242edf5f5685be94b6b09d36bf91280da5de5
 
 proof
 
+```
 ~/ecctools/modmath 0xf7051f27b09112d4 x 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 Result: 0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a
 
 ~/ecctools/modmath 0x2924e3e5ac18fd894504878d4fd1820e71bd63cd9b15d69511926e5f05d99d3a x 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 Result: 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133
 
+```
+
 but if we multiply 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 again by lambda
 
+```
 ~/ecctools/modmath 0xd6db1c1a53e70276bafb7872b02e7df048f179191432c9a5b73ad10619cb9133 x 0x5363ad4cc05c30e0a5261c028812645a122e22ea20816678df02967c1b23bd72
 Result: 0xf7051f27b09112d4
+
+```
 
 What the heck?? We go back to the first key, wow!!
 
 So for each key that we compute, we can get easy 6 values more This values Are:
 
+```
 Original Point, Original Point negated
 Original Point * lambda,  Original Point * lambda negated
 Original Point * lambda^2,  Original Point * lambda^2 negated
-Obiously we need to do the operations with the X value multiplied by beta becasue it is more faster and we are going to get the same result
+```
 
-Endomorphism don't work for puzzles because 5 of those 6 keys are outside of the range
+Obiously we need to do the operations with the X value multiplied by *beta* becasue it is more faster and we are going to get the same result
+
+*Endomorphism don't work for puzzles because 5 of those 6 keys are outside of the range*
 
 I added endomorphism to speed up the vanity search process, but i extended it for all other methods that i mentioned before
 
-pub2rmd mode
+
+## pub2rmd mode
+
 This method is made to try to get the puzzles publickey key it works a little more faster because it skip the EC Operations
 
 The input file need to have the hash RMD160 of the address without publickey leaked:
 
+```
 3ee4133d991f52fdf6a25c9834e0745ac74248a4
 20d45a6a762535700ce9e0b216e31994335db8a5
 739437bb3dd6d1983e66629c5f08c70e52769371
@@ -422,12 +549,15 @@ c6927a00970d0165327d0a6db7950f05720c295c
 578d94dc6f40fff35f91f6fba9b71c46b361dff2
 7eefddd979a1d6bb6f29757a1f463579770ba566
 c01bf430a97cbcdaedddba87ef4ea21c456cebdb
+```
+
 To target that file you need to do:
 
-./keyhunt -m pub2rmd -f tests/puzzleswopublickey.txt -t 6 -q
+```./keyhunt -m pub2rmd -f tests/puzzleswopublickey.txt -t 6 -q```
 
 Output:
 
+```
 [+] Version 0.2.211007 Chocolate ¡Beta!
 [+] Mode pub2rmd
 [+] Threads : 6
@@ -439,27 +569,39 @@ Output:
 [+] Bloomfilter completed
 [+] Sorting data ... done! 29 values were loaded and sorted
 [+] Total 207618048 keys in 60 seconds: ~3 Mkeys/s (3460300 keys/s)
+```
+
 You can let it run for a while together with others scripts, if you get one of those publickeys now you can target it with a better method like bsgs or another tools like kangaroo
 
-bsgs mode (baby step giant step)
+
+## bsgs mode (baby step giant step)
+
 Keyhunt implement the BSGS algorithm to search privatekeys for a known public key.
 
 The input file need to have a list of publickeys compress or uncompress those publickey can be mixed in the same file, one public key per line and any other word followed by an space is ignored example of the file:
 
+```
 043ffa1cc011a8d23dec502c7656fb3f93dbe4c61f91fd443ba444b4ec2dd8e6f0406c36edf3d8a0dfaa7b8f309b8f1276a5c04131762c23594f130a023742bdde # 0000000000000000000000000000000000800000000000000000100000000000
 046534b9e9d56624f5850198f6ac462f482fec8a60262728ee79a91cac1d60f8d6a92d5131a20f78e26726a63d212158b20b14c3025ebb9968c890c4bab90bfc69 # 0000000000000000000000000000000000800000000000000000200000000000
+```
+
 This example contains 2 publickeys followed by his privatekey just to test the correct behavior of the application.
 
-Don't load more than 100 or 1000 publickeys if you lad more than it will take a long long time in update the speed counter and the speed will be very low.
+*Don't load more than 100 or 1000 publickeys* if you lad more than it will take a long long time in update the speed counter and the speed will be very low.
 
 btw any word followed by and space after the publickey is ignored the file can be only the publickeys:
 
+```
 043ffa1cc011a8d23dec502c7656fb3f93dbe4c61f91fd443ba444b4ec2dd8e6f0406c36edf3d8a0dfaa7b8f309b8f1276a5c04131762c23594f130a023742bdde
 046534b9e9d56624f5850198f6ac462f482fec8a60262728ee79a91cac1d60f8d6a92d5131a20f78e26726a63d212158b20b14c3025ebb9968c890c4bab90bfc69
-File creation
-the bsgs mode -m bsgs now can create automatically the files needed to speed up the initial load process of keyhunt this is the bloom filters creation and the bp table creation.
+```
 
-To request to keyhunt to create those files automatically use -S Capital S for SAVE and READ files. The 3 files needed for keyhunt can vary from size depending of your values of -n and -k , so make your test and stick to one combination of (n,k) values or you can end with hundreds of unnesesary files.
+### File creation
+
+the bsgs mode `-m bsgs` now can create automatically the files needed to speed up the initial load process of keyhunt this is the bloom filters creation and the bp table creation.
+
+To request to keyhunt to create those files automatically use `-S` Capital S for SAVE and READ files.
+The 3 files needed for keyhunt can vary from size depending of your values of `-n` and `-k` , so make your test and stick to one combination of (n,k) values or you can end with hundreds of unnesesary files.
 
 The 3 Files size are the same amount of memory used in runtime.
 
@@ -467,6 +609,7 @@ The files are created if they don't exist when you run the program the first tim
 
 example of file creation:
 
+```
 ./keyhunt -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
@@ -491,8 +634,11 @@ example of file creation:
 [+] Writing bP Table to file keyhunt_bsgs_2_4096.tbl .. Done!
 [+] Writing bloom filter to file keyhunt_bsgs_7_4096.blm .... Done!
 ^C] Total 457396837154816 keys in 30 seconds: ~15 Tkeys/s (15246561238493 keys/s)
+```
+
 When we run the program for second time the files are now readed and the bP Points processing is omitted:
 
+```
 ./keyhunt -m bsgs -f tests/125.txt -R -b 125 -q -S -s 10
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
@@ -514,14 +660,21 @@ When we run the program for second time the files are now readed and the bP Poin
 [+] Reading bP Table from file keyhunt_bsgs_2_4096.tbl .... Done!
 [+] Reading bloom filter from file keyhunt_bsgs_7_4096.blm .... Done!
 ^C
-All the next examples were made with the -S option I just ommit that part of the output to avoid confutions use -S if you want, but remember with a great -n there must also come great files
+```
 
-Examples
+All the next examples were made with the `-S` option I just ommit that part of the output to avoid confutions use `-S` if you want, but remember with a great `-n` there must also come great files
+
+### Examples
+
 To try to find those privatekey this is the line of execution:
 
+```
 time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
+```
+
 Output:
 
+```
 time ./keyhunt -m bsgs -f tests/test120.txt -b 120 -S
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode BSGS secuential
@@ -548,17 +701,24 @@ All points were found
 real    0m3.632s
 user    0m3.619s
 sys     0m0.000s
+```
+
 Test the puzzle 120 with the next publickey:
 
+```
 0233709eb11e0d4439a729f21c2c443dedb727528229713f0065721ba8fa46f00e
-Line of execution in random mode -R or -B random
+```
 
-./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R
+Line of execution in random mode `-R` or -B random
 
-./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -B random
+```./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -R```
+
+```./keyhunt -m bsgs -f tests/125.txt -b 125 -q -s 10 -B random```
+
 
 Example Output:
 
+```
 [+] Version 0.2.230507 Satoshi Quest, developed by AlbertoBSD
 [+] Quiet thread output
 [+] Stats output every 10 seconds
@@ -578,17 +738,22 @@ Example Output:
 [+] Making checkums .. ... done
 [+] Sorting 4096 elements... Done!
 [+] Total 158329674399744 keys in 10 seconds: ~15 Tkeys/s (15832967439974 keys/s)
+```
+
 Good speed no? 15 Terakeys/s for one single thread
 
-^C] Total 158329674399744 keys in 10 seconds: ~15 Tkeys/s (15832967439974 keys/s)
+**^C] Total 158329674399744 keys in 10 seconds: ~15 Tkeys/s (15832967439974 keys/s)**
 
-We can speed up our process selecting a bigger K value -k value btw the n value is the total length of item tested in the radom range, a bigger k value means more ram to be use:
+We can speed up our process selecting a bigger K value `-k value` btw the n value is the total length of item tested in the radom range, a bigger k value means more ram to be use:
 
 Example:
-
+```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
+```
+
 Output:
 
+```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 20 -S
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
@@ -612,15 +777,22 @@ Output:
 [+] Writing bP Table to file keyhunt_bsgs_2_81920.tbl .. Done!
 [+] Writing bloom filter to file keyhunt_bsgs_7_81920.blm .... Done!
 ^C] Thread 0x1bbb290563ffcf38724482a45f2bed04  ~256 Tkeys/s (256259265658880 keys/s)
-~256 Terakeys/s for one single thread
+```
 
-Note the value of N 0xfffff000000 with k = 20 this mean that the N value is less than the default value 0x100000000000 that is because k is not a 2^X number
+**~256 Terakeys/s for one single thread**
+
+Note the value of N `0xfffff000000` with k = 20 this mean that the N value is less than the default value `0x100000000000` that is because k is not a 2^X number
 
 if you want to more Speed use a bigger -k value like 128, it will use some 2 GB of RAM
 
+
+```
 ./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 128 -S
+```
+
 Output
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
 [+] K factor 128
@@ -640,18 +812,21 @@ Output
 [+] Reading bP Table from file keyhunt_bsgs_2_524288.tbl .... Done!
 [+] Reading bloom filter from file keyhunt_bsgs_7_524288.blm .... Done!
 ^C] Thread 0x1d0e05e7aaf9eca861fe0b2245579241   ~1 Pkeys/s (1292439268063095 keys/s)
-~1.2 Pkeys/s for one single thread
+```
+
+**~1.2 Pkeys/s for one single thread**
 
 OK at this point maybe you want to use ALL your RAM memory to solve the puzzle 125, just a bigger -k value
 
-I already tested it with some **8 GB ** used with -k 512 and I get ~46 Petakeys/s per thread.
+I already tested it with some **8 GB ** used with `-k 512` and I get **~46 Petakeys/s per thread.**
 
-with 8 threads
+with **8** threads
 
-./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 512 -q -t 8 -s 10 -S
+`./keyhunt -m bsgs -f tests/125.txt -b 125 -R -k 512 -q -t 8 -s 10 -S`
 
 Output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Random mode
 [+] K factor 512
@@ -674,14 +849,17 @@ Output:
 [+] Reading bP Table from file keyhunt_bsgs_2_2097152.tbl .... Done!
 [+] Reading bloom filter from file keyhunt_bsgs_7_2097152.blm .... Done!
 ^C] Total 2126103644397895680 keys in 110 seconds: ~19 Pkeys/s (19328214949071778 keys/s)
+```
 I get ~19 Petakeys/s total
 
-Warning: the default n value have a maximun K of 4096 if that value is exceed the program can have an unknow behavior or suboptimal speed. If you want to use a bigger K I recomend use a bigger N value -n 0x400000000000 and half your K value.
+Warning: the default n value have a maximun K of `4096` if that value is exceed the program can have an unknow behavior or suboptimal speed.
+If you want to use a bigger K I recomend use a bigger N value `-n 0x400000000000` and half your K value.
 
-Just as comparation with the BSGS program of JLP Same publickeys and ranged used by his sample:
+Just as comparation with the BSGS program of JLP
+Same publickeys and ranged used by his sample:
 
 publickeys:
-
+```
 0459A3BFDAD718C9D3FAC7C187F1139F0815AC5D923910D516E186AFDA28B221DC994327554CED887AAE5D211A2407CDD025CFC3779ECB9C9D7F2F1A1DDF3E9FF8
 04A50FBBB20757CC0E9C41C49DD9DF261646EE7936272F3F68C740C9DA50D42BCD3E48440249D6BC78BC928AA52B1921E9690EBA823CBC7F3AF54B3707E6A73F34
 0404A49211C0FE07C9F7C94695996F8826E09545375A3CF9677F2D780A3EB70DE3BD05357CAF8340CB041B1D46C5BB6B88CD9859A083B0804EF63D498B29D31DD1
@@ -698,23 +876,41 @@ publickeys:
 04D5BE7C653773CEE06A238020E953CFCD0F22BE2D045C6E5B4388A3F11B4586CBB4B177DFFD111F6A15A453009B568E95798B0227B60D8BEAC98AF671F31B0E2B
 04B1985389D8AB680DEDD67BBA7CA781D1A9E6E5974AAD2E70518125BAD5783EB5355F46E927A030DB14CF8D3940C1BED7FB80624B32B349AB5A05226AF15A2228
 0455B95BEF84A6045A505D015EF15E136E0A31CC2AA00FA4BCA62E5DF215EE981B3B4D6BCE33718DC6CF59F28B550648D7E8B2796AC36F25FF0C01F8BC42A16FD9
+```
+
 set range
 
+```
 -r 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000:49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5effffffffffffffff
+```
+
 the n value to get the same baby step table:
 
+
+```
 -n 1152921504606846976
+```
+
 number of threads
 
+```
 -t 6
+```
+
 Hidding the speed:
 
+```
 -s 0
+```
+
 command:
 
+```
 time ./keyhunt -m bsgs -t 6 -f tests/in.txt -r 49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5e0000000000000000:49dccfd96dc5df56487436f5a1b18c4f5d34f65ddb48cb5effffffffffffffff -n 0x1000000000000000 -M -s 0
-Output:
+```
 
+Output:
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Threads : 6
 [+] Matrix screen
@@ -783,20 +979,27 @@ All points were found
 real    164m32.904s
 user    973m8.387s
 sys     0m26.803s
+```
+
 Amount of RAM used ~4.5 GB, time to solve the sixteen public keys in the range of 64 bits key-space: 164 min (~2.7 hrs) using 6 threads
 
-if we run the same command with -n 0x1000000000000000 -k 4 -t 6 it use ~18 GB or RAM and solve the same keys in 60 minutes
+if we run the same command with `-n 0x1000000000000000 -k 4 -t 6` it use ~18 GB or RAM and solve the same keys in 60 minutes
 
+```
 All points were found
 
 real    59m50.533s
 user    329m29.836s
 sys     0m22.752s
-There are several variations to play with the values -n and -k but there are some minimal values required, n can not be less than 1048576 (2^20)
+```
 
-To get optimal performance the k values need to be base 2^x values, this is 1,2,4,8,16,32 ...
+There are several variations to play with the values `-n` and `-k` but there are some minimal values required, n can not be less than 1048576 (2^20)
 
-Valid n and maximun k values for specific
+To get optimal performance the k values need to be base 2^x values, this is 1,2,4,8,16,32 ... 
+
+### Valid n and maximun k values for specific 
+
+```
 +------+----------------------+-------------+
 | bits |  n in hexadecimal    | k max value |
 +------+----------------------+-------------+
@@ -824,46 +1027,70 @@ Valid n and maximun k values for specific
 |   62 |   0x4000000000000000 | 2097152     |
 |   64 |  0x10000000000000000 | 4194304     |
 +------+----------------------+-------------+
-If you exceed the max value of K the program can have a unknow behavior, the program can have a suboptimal performance, or in the wrong cases you can missing some hits and have an incorrect SPEED.
+```
+ 
+**If you exceed the max value of K the program can have a unknow behavior, the program can have a suboptimal performance, or in the wrong cases you can missing some hits and have an incorrect SPEED.**
 
-Note for user that want use it with SWAP memory. IT DOESN'T WORK with Swap Memory was made to small chucks of memory also is slowly.
+Note for user that want use it with SWAP memory. IT DOESN'T WORK with Swap Memory was made to small chucks of memory also is slowly.   
 
-What values use according to my current RAM:
-2 G -k 128
+### What values use according to my current RAM:
 
-4 G -k 256
+2 G
+-k 128
 
-8 GB -k 512
+4 G
+-k 256
 
-16 GB -k 1024
+8 GB
+-k 512
 
-32 GB -k 2048
+16 GB
+-k 1024
 
-64 GB -n 0x100000000000 -k 4096
+32 GB
+-k 2048
 
-128 GB -n 0x400000000000 -k 4096
+64 GB
+-n 0x100000000000 -k 4096
 
-256 GB -n 0x400000000000 -k 8192
+128 GB
+-n 0x400000000000 -k 4096
 
-512 GB -n 0x1000000000000 -k 8192
+256 GB
+-n 0x400000000000 -k 8192
 
-1 TB -n 0x1000000000000 -k 16384
+512 GB
+-n 0x1000000000000 -k 8192
 
-2 TB -n 0x4000000000000 -k 16384
+1 TB
+-n 0x1000000000000 -k 16384
 
-4 TB -n 0x4000000000000 -k 32768
+2 TB
+-n 0x4000000000000 -k 16384
 
-8 TB -n 0x10000000000000 -k 32768
+4 TB
+-n 0x4000000000000 -k 32768
 
-Testing puzzle 63 bits
+8 TB
+-n 0x10000000000000 -k 32768
+
+
+### Testing puzzle 63 bits
+
 Publickey:
 
+```
 0365ec2994b8cc0a20d40dd69edfe55ca32a54bcbbaa6b0ddcff36049301a54579
-Command
+```
 
+Command
+```
 time ./keyhunt -m bsgs -t 8 -f tests/63.pub -k 512 -s 0 -S -b 63
+```
+
 output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Threads : 8
 [+] K factor 512
@@ -891,46 +1118,72 @@ real    4m11.358s
 user    26m23.474s
 sys     0m20.061s
 
-Is my speed real?
+```
+
+## Is my speed real?
+
 Since this is still a beta version we can have some doubt about the speed showed in the bsgs mode.
 
-To check this i prepare a set of test publickeys to be found at some specific time according to your speed.
+To check this  i prepare a set of test publickeys to be found at some specific time according to your speed.
 
-With 1 Petakeys/s the publickey will be found in 2 minutes: Privatekey: 8000000000000001aa535d3d0c0000 Publickey : 02af4535880d694d660031a161c53a6889c45d2de513454858e94739f9c790768b
+With  1 Petakeys/s the publickey will be found in 2 minutes:
+Privatekey: 8000000000000001aa535d3d0c0000
+Publickey : 02af4535880d694d660031a161c53a6889c45d2de513454858e94739f9c790768b
 
-With 10 Petakeys/s the publickey will be found in 2 minutes: Privatekey: 8000000000000010a741a462780000 Publickey : 025deee1657cd5d363cff23ec1b14781e504cbb6292c273e515d73f98065131d40
+With 10 Petakeys/s the publickey will be found in 2 minutes:
+Privatekey: 8000000000000010a741a462780000
+Publickey : 025deee1657cd5d363cff23ec1b14781e504cbb6292c273e515d73f98065131d40
 
-With 50 Petakeys/s the publickey will be found in 2 minutes: Privatekey: 8000000000000053444835ec580000 Publickey : 03c13e9c6e5cbe2ac06817e4d8fd0a3e836f1a121aab91bb67ef44747b25c7d791
+With 50 Petakeys/s the publickey will be found in 2 minutes:
+Privatekey: 8000000000000053444835ec580000
+Publickey : 03c13e9c6e5cbe2ac06817e4d8fd0a3e836f1a121aab91bb67ef44747b25c7d791
 
-With 1 Exakey/s the publickey will be found in 2 minutes: Privatekey: 800000000000068155a43676e00000 Publickey : 022b6a74badcc4c3d8fab7d01ddc1854b9d8f262172789b2aa1bb7fd42cc1b2817
+With  1 Exakey/s the publickey will be found in 2 minutes:
+Privatekey: 800000000000068155a43676e00000
+Publickey : 022b6a74badcc4c3d8fab7d01ddc1854b9d8f262172789b2aa1bb7fd42cc1b2817
 
-With 5 Exakeys/s the publickey will be found in 2 minutes Privatekey: 8000000000002086ac351052600000 Publickey : 024cf9e44f808e7b0bbb12a57ff63e3a8407cba1816f5e31e815d33d70e4a95a7f
+With  5 Exakeys/s the publickey will be found in 2 minutes
+Privatekey: 8000000000002086ac351052600000
+Publickey : 024cf9e44f808e7b0bbb12a57ff63e3a8407cba1816f5e31e815d33d70e4a95a7f
 
-With 10 Exakeys/s the publickey will be found in 2 minutes Privatekey: 800000000000410d586a20a4c00000 Publickey : 02ee0cf78d13b4aae9c8777a0f93dff7f5be3855bd2c0f85370f861c69bb5b533a
+With 10 Exakeys/s the publickey will be found in 2 minutes
+Privatekey: 800000000000410d586a20a4c00000
+Publickey : 02ee0cf78d13b4aae9c8777a0f93dff7f5be3855bd2c0f85370f861c69bb5b533a
 
-Select one publickey that fit to your current speed save it in a file testpublickey.txt and test it with:
+Select one publickey that fit to your current speed save it in a file `testpublickey.txt` and test it with:
 
+```
 ./keyhunt -m bsgs -f testpublickey.txt -b 120 -q
+```
+
 Change the values of k, n and t
+
 
 The publickeys should be found in some 2 minutes after the load of the files
 
 Change your n or k values according to your current memory and remember not exceed the k value of each N please check the table https://github.com/albertobsd/keyhunt#valid-n-and-k-values
 
-minikeys Mode
+
+## minikeys Mode
+
 This mode is some experimental.
 
 For the moment only Minikeys of 22 characters are available
 
-The minikey are generated from a 16 byte buffer using the base58 encode funtion using the bitcoin string 123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz any sugestion please let me know.
+The minikey are generated from a 16 byte buffer using the base58 encode funtion using the bitcoin  string `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz` any sugestion please let me know.
 
 The input file can be an addresses or rmd hashes list of the target keys
 
+
 Command example:
 
+```
 ./keyhunt -m minikeys -f tests/minikeys.txt -C SG64GZqySYwBm9KxE1wJ28 -n 0x10000
+```
+
 Output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode minikeys
 [+] N = 0x10000
@@ -945,9 +1198,15 @@ pubkey: 048722093a2b5dd05a84c28a18b2a6601320c9eaab9db99e76b850f9574cd3d5c987bf0c
 minikey: SG64GZqySYwBm9KxE3wJ29
 address: 15azScMmHvFPAQfQafrKr48E9MqRRXSnVv
 ^C
+```
+
 random minikeys command
 
+```
 ./keyhunt -m minikeys -f tests/minikeys.txt -n 0x10000 -q -R
+```
+
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Mode minikeys
 [+] Quiet thread output
@@ -959,18 +1218,26 @@ random minikeys command
 [+] Sorting data ... done! 1 values were loaded and sorted
 ^C] Total 830464 keys in 30 seconds: 27682 keys/s
 
-Ethereum
+```
+
+
+# Ethereum
+
 Finally ethereum address are supported, for ethereum there are no modes exect for address.
 
 if you have publickeys for ethereum you can use xpoint or bsgs mode.
 
-to test the functionality of ethereum you can use the sample file tests/1to32.eth
+to test the functionality of ethereum you can use the sample file `tests/1to32.eth`
 
-command:
+command: 
 
+```
 ./keyhunt -c eth -f tests/1to32.eth -r 1:100000000 -M
+```
+
 output:
 
+```
 [+] Version 0.2.230430 Satoshi Quest, developed by AlbertoBSD
 [+] Setting search for ETH adddress.
 [+] Matrix screen
@@ -996,63 +1263,98 @@ address: 0xd41c057fd1c78805aac12b0a94a405c0461a6fbb
  Hit!!!! Private Key: 8
 address: 0xf1f6619b38a98d6de0800f1defc0a6399eb6d30c
 ....
-Speeds
+```
+
+## Speeds
+
 I already explain the speed for BSGS
 
 But since there is new updates for other modes I want to clarify it.
 
-For the modes address, rmd160, xpoint and vanity
+For the modes `address`, `rmd160`, `xpoint` and `vanity`
 
-Each thread works in groups of 1024 keys, so every time that one inner-cycle of each thread is finished the code update its own coutner in 1
+Each thread works in groups of 1024 keys, so every time that one inner-cycle 
+of each thread is finished the code update its own coutner in 1
 
+```
 steps[thread_number]++;
+```
+
 So every step represent 1024 keys scanned.
 
-if you enabled endomorphism, the total steps are multiplied by 6 for modes address, rmd160 and vanity. Becuase with endomorphism we checking efectively 6 different keys every step
+if you enabled endomorphism, the total steps are multiplied by 6 for modes `address`, `rmd160` and `vanity`.
+Becuase with endomorphism we checking  efectively 6 different keys every step
+ 
+For `xpoint` mode plus endomorphism the number is only is multiplied by 3 only becasue we only care
+about the X value and we don't need the negated values ( mirror Y axis)
 
-For xpoint mode plus endomorphism the number is only is multiplied by 3 only becasue we only care about the X value and we don't need the negated values ( mirror Y axis)
+Special case for `compress` search of the modes`address`, `rmd160` and `vanity` 
+WITHOUT `endomorphism` enabled, for this conditions the speed is multipied by 2 
+because we are checking efectively 2 keys the program calculate one X value and 
+it is checking both prefixes `02 + X value` and `03 + X value`, this is NOT optional
+Y try to do it without this behavior but in that case the speed is worse
 
-Special case for compress search of the modesaddress, rmd160 and vanity WITHOUT endomorphism enabled, for this conditions the speed is multipied by 2 because we are checking efectively 2 keys the program calculate one X value and it is checking both prefixes 02 + X value and 03 + X value, this is NOT optional Y try to do it without this behavior but in that case the speed is worse
+This is important because if you targeting an specific range with `compress` and WITHOUT endomorphism by examples puzzles
+ the efective speed is half of the showed speed by the program
+But if you are targeting all the curve then the showed speed is correct.
 
-This is important because if you targeting an specific range with compress and WITHOUT endomorphism by examples puzzles the efective speed is half of the showed speed by the program But if you are targeting all the curve then the showed speed is correct.
+## FAQ
 
-FAQ
-Where the privatekeys will be saved? R: In a file called KEYFOUNDKEYFOUND.txt
+- Where the privatekeys will be saved?
+R: In a file called `KEYFOUNDKEYFOUND.txt`
 
-Can I save the bloomfilter and table to speed up the process? R: Yes use only -S always that you run the program it works for: bsgs, address, rmd160, minikeys, xpoint it don't work for vanity The files will be generated automatically in the current directory
+- Can I save the bloomfilter and table to speed up the process?
+R: Yes use only `-S` always that you run the program it works for:
+`bsgs`, `address`, `rmd160`, `minikeys`, `xpoint` it don't work for `vanity`
+The files will be generated automatically in the current directory
 
-Why the speed for bsgs say 0 keys/s R: this was asked here #69 and here #108 and also others in telegram
+- Why the speed for bsgs say 0 keys/s
+R: this was asked here https://github.com/albertobsd/keyhunt/issues/69 and 
+here https://github.com/albertobsd/keyhunt/issues/108 and also others in telegram
 
 Please check the video that i made to answer that https://youtu.be/MVby8mYNxbI
 
-Is available for Windows? R: It can be compiled with mingw, but i strongly recomend WSL with Ubuntu for windows 10
-Updated: Yes thanks to @kanhavishva Available in: https://github.com/kanhavishva/keyhunt
+- Is available for Windows?
+R: It can be compiled with mingw, but i strongly recomend WSL with Ubuntu for windows 10
 
-Also, thanks to @WanderingPhilosopher Available in: https://github.com/WanderingPhilosopher/keyhunt
+Updated: 
+Yes thanks to @kanhavishva
+Available in: https://github.com/kanhavishva/keyhunt
 
-Also thanks to @XopMC Available in: https://github.com/XopMC/keyhunt-win
+Also, thanks to @WanderingPhilosopher
+Available in: https://github.com/WanderingPhilosopher/keyhunt
 
-Thanks
-This program was possible thanks to
+Also thanks to @XopMC
+Available in: https://github.com/XopMC/keyhunt-win
 
-IceLand
-kanhavishva
-XopMC
-WanderingPhilosopher
-Malboro Man
-NetSec
-Jean Luc Pons
-All the group of CryptoHunters that made this program possible
-All the users that tested it, report bugs, requested improvements and shared his knowledge.
-Donations
-BTC: 1Coffee1jV4gB5gaXfHgSHDz9xx9QSECVW
-ETH: 0x6222978c984C22d21b11b5b6b0Dd839C75821069
-DOGE: DKAG4g2HwVFCLzs7YWdgtcsK6v5jym1ErV
+
+## Thanks
+
+This program was possible thanks to 
+- IceLand
+- kanhavishva
+- XopMC
+- WanderingPhilosopher
+- Malboro Man
+- NetSec
+- Jean Luc Pons
+- All the group of CryptoHunters that made this program possible
+- All the users that tested it, report bugs, requested improvements and shared his knowledge.
+
+
+## Donations
+
+- BTC: 1Coffee1jV4gB5gaXfHgSHDz9xx9QSECVW
+- ETH: 0x6222978c984C22d21b11b5b6b0Dd839C75821069
+- DOGE: DKAG4g2HwVFCLzs7YWdgtcsK6v5jym1ErV
+
 All the donations will be use only for two things:
 
-Native Windows version with 0 external dependencies.
-Get an affordable desktop computer with decent GPU not high end, just to start the GPU version.
-Testnet
+- Native Windows version with 0 external dependencies.
+- Get an affordable desktop computer with decent GPU not high end, just to start the GPU version.
+
+## Testnet
+
 I also need to make some test in testnet network if you have some Testnet balance can you help me with donations in my testnet address:
 
 Address: msKcxhizYWVvxCACFEG4GCSK1xYrEkib5A
