@@ -120,7 +120,7 @@ char *str_baseminikey = NULL;
 char *raw_baseminikey = NULL;
 char *minikeyN = NULL;
 int minikey_n_limit;
-const char *version = "0.2.230519 Satoshi Quest(Linux)";
+const char *version = "0.2.230519 Satoshi Quest(Windows)";
 
 #define CPU_GRP_SIZE 1024
 
@@ -479,9 +479,21 @@ int main(int argc, char **argv)	{
 		rseed(clock() + time(NULL) + rand()*rand());
 	}
 #endif
-  
-	
-	printf("\033[1;35m\n-------[+] Version %s, developed by AlbertoBSD(Linux Version - CryptoXploit)-------\n\n\a\033[0m",version);
+printf("\n\033[1;34m");  
+printf("\t\t\t ▄    ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄         ▄  ▄         ▄  ▄         ▄  ▄▄        ▄  ▄▄▄▄▄▄▄▄▄▄▄\n");
+printf("\t\t\t▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌▐░░▌      ▐░▌▐░░░░░░░░░░░▌\n");
+printf("\t\t\t▐░▌ ▐░▌ ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌▐░▌░▌     ▐░▌ ▀▀▀▀█░█▀▀▀▀\n");
+printf("\t\t\t▐░▌▐░▌  ▐░▌          ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌▐░▌▐░▌    ▐░▌     ▐░▌\n");     
+printf("\t\t\t▐░▌░▌   ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌▐░▌ ▐░▌   ▐░▌     ▐░▌\n");     
+printf("\t\t\t▐░░▌    ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌  ▐░▌  ▐░▌     ▐░▌\n");     
+printf("\t\t\t▐░▌░▌   ▐░█▀▀▀▀▀▀▀▀▀  ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌       ▐░▌▐░▌   ▐░▌ ▐░▌     ▐░▌\n");     
+printf("\t\t\t▐░▌▐░▌  ▐░▌               ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌    ▐░▌▐░▌     ▐░▌\n");     
+printf("\t\t\t▐░▌ ▐░▌ ▐░█▄▄▄▄▄▄▄▄▄      ▐░▌     ▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌     ▐░▐░▌     ▐░▌\n");     
+printf("\t\t\t▐░▌  ▐░▌▐░░░░░░░░░░░▌     ▐░▌     ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░▌      ▐░░▌     ▐░▌\n");     
+printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀       ▀ \n\033[0m");     
+                                                                                      
+
+	printf("\033[1;35m\n-------[+] Version %s, developed by AlbertoBSD(Windows Version - CryptoXploit)-------\n\n\a\033[0m",version);
 	 
 
 	while ((c = getopt(argc, argv, "deh6MqRSB:b:c:C:E:f:I:k:l:m:N:n:p:r:s:t:v:G:8:z:")) != -1) {
