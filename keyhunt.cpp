@@ -5780,7 +5780,7 @@ void menu() {
 	printf("------------------------------------------------------Developer-----------------------------------------------------\n\n");
 	printf("Developed by AlbertoBSD\tTips ₿TC: 1Coffee1jV4gB5gaXfHgSHDz9xx9QSECVW\n");
 	printf("Thanks to Iceland always helping and sharing his ideas.\nTips to Iceland: bc1q39meky2mn5qjq704zz0nnkl0v7kj4uz6r529at\n\n");
-	printf("-------------------------------------------------visit https:////www.cryptoxploit.com for tutorials-------------------\n");
+	printf("-------------------------------------------------visit https://www.cryptoxploit.com for tutorials-------------------\n");
 	exit(EXIT_FAILURE);
 }
 
