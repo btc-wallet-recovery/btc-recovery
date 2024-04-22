@@ -120,7 +120,7 @@ char *str_baseminikey = NULL;
 char *raw_baseminikey = NULL;
 char *minikeyN = NULL;
 int minikey_n_limit;
-const char *version = "0.2.230519 Satoshi Quest(Windows)";
+const char *version = "0.2.230519 Satoshi Quest(Linux)";
 
 #define CPU_GRP_SIZE 1024
 
@@ -493,7 +493,7 @@ printf("\t\t\t▐░▌  ▐░▌▐░░░░░░░░░░░▌     �
 printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀       ▀ \n\033[0m");     
                                                                                       
 
-	printf("\033[1;35m\n-------[+] Version %s, developed by AlbertoBSD(Windows Version - CryptoXploit)-------\n\n\a\033[0m",version);
+	printf("\033[1;35m\n-------[+] Version %s, developed by AlbertoBSD(Linux Version - CryptoXploit)-------\n\n\a\033[0m",version);
 	 
 
 	while ((c = getopt(argc, argv, "deh6MqRSB:b:c:C:E:f:I:k:l:m:N:n:p:r:s:t:v:G:8:z:")) != -1) {
@@ -949,7 +949,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 			case MODE_ADDRESS:
 			case MODE_XPOINT:
 				if(!readFileAddress(fileName))	{
-					fprintf(stderr,"\033[0;31m[E] Unexpected error.are you sure the command syntax is correct and the file exists on path?use keyhunt.exe -h for options\n\033[0m");
+					fprintf(stderr,"\033[0;31m[E] Unexpected error.are you sure the command syntax is correct and the file exists on path?use ./keyhunt -h for options\n\033[0m");
 					exit(EXIT_FAILURE);
 				}
 			break;
@@ -5780,7 +5780,7 @@ void menu() {
 	printf("------------------------------------------------------Developer-----------------------------------------------------\n\n");
 	printf("Developed by AlbertoBSD\tTips ₿TC: 1Coffee1jV4gB5gaXfHgSHDz9xx9QSECVW\n");
 	printf("Thanks to Iceland always helping and sharing his ideas.\nTips to Iceland: bc1q39meky2mn5qjq704zz0nnkl0v7kj4uz6r529at\n\n");
-	printf("-------------------------------------------------visit https:\\\\www.cryptoxploit.com for tutorials-------------------\n");
+	printf("-------------------------------------------------visit https:////www.cryptoxploit.com for tutorials-------------------\n");
 	exit(EXIT_FAILURE);
 }
 
