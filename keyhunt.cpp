@@ -2232,7 +2232,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 					div_pretotal.Div(&int_limits[salir ? i : i-1]);
 					str_divpretotal = div_pretotal.GetBase10();
 					if(FLAGMATRIX)	{
-						sprintf(buffer,"[+] Total ►\033[1;33m%s\033[0m◄ keys in ►\033[1;33m%s\033[0m◄ seconds: ⌠\033[1;33m%s %s\033[0m⌡ █\033[1;33m%s keys/s\033[0m█\n\n",str_total,str_seconds,str_divpretotal,str_limits_prefixs[salir ? i : i-1],str_pretotal);
+						sprintf(buffer,"[+] Total ►\033[1;33m%s\033[0m◄ keys in ►\033[1;33m%s\033[0m◄ seconds: ⌠\033[1;33m%s %s\033[0m⌡ █\033[1;33m%s keys/s\033[0m█\n",str_total,str_seconds,str_divpretotal,str_limits_prefixs[salir ? i : i-1],str_pretotal);
 					}
 					else	{
 						if(THREADOUTPUT == 1)	{
