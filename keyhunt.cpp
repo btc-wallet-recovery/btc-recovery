@@ -5434,13 +5434,16 @@ void *thread_process_bsgs_both(void *vargp)	{
 
 		
 		if(FLAGMATRIX)	{
+			if(FLAGQUIET == 0){
 			aux_c = base_key.GetBase16();
 			printf("[+] Thread ► 0x%s \n",aux_c);
 			fflush(stdout);
 			free(aux_c);
+			}
 		}
+		
 		else	{
-			if(FLAGQUIET == 0){
+			if(FLAGQUIET == 1){
 				aux_c = base_key.GetBase16();
 				printf("\r[+] Thread ► 0x%s   \r",aux_c);
 				fflush(stdout);
