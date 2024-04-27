@@ -962,7 +962,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 		}
 		
 		if(FLAGMODE != MODE_VANITY && !FLAGREADEDFILE1)	{
-			printf("[+] Sorting data please wait → → →");
+			printf("[+] Sorting data please wait ¹ ² ³");
 			_sort(addressTable,N);
 			printf(" Done! %" PRIu64 " values were loaded and sorted\n",N);
 			writeFileIfNeeded(fileName);
@@ -1567,7 +1567,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 						exit(EXIT_FAILURE);
 					}
 				}
-				printf("→ → → Done!\n");
+				printf("¹ ² ³ Done!\n");
 				fclose(fd_aux3);
 				FLAGREADEDFILE3 = 1;
 			}
@@ -1851,7 +1851,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 		}
 		
 		if(!FLAGREADEDFILE1 || !FLAGREADEDFILE2 || !FLAGREADEDFILE4)	{
-			printf("[+] Making checksums → → ");
+			printf("[+] Making checksums ¹ ² ³ ");
 			fflush(stdout);
 		}	
 		if(!FLAGREADEDFILE1)	{
@@ -1880,7 +1880,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 			fflush(stdout);
 		}	
 		if(!FLAGREADEDFILE3)	{
-			printf("[+] Sorting %lu elements → → → ",bsgs_m3);
+			printf("[+] Sorting %lu elements ¹ ² ³ ",bsgs_m3);
 			fflush(stdout);
 			bsgs_sort(bPtable,bsgs_m3);
 			sha256((uint8_t*)bPtable, bytes,(uint8_t*) checksum);
@@ -1975,7 +1975,7 @@ printf("\t\t\t ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀
 				snprintf(buffer_bloom_file,1024,"keyhunt_bsgs_2_%" PRIu64 ".tbl",bsgs_m3);
 				fd_aux3 = fopen(buffer_bloom_file,"wb");
 				if(fd_aux3 != NULL)	{
-					printf("[+] Writing bP Table to file %s → → ",buffer_bloom_file);
+					printf("[+] Writing bP Table to file %s ¹ ² ³ ",buffer_bloom_file);
 					fflush(stdout);
 					readed = fwrite(bPtable,bytes,1,fd_aux3);
 					if(readed != 1)	{
@@ -3190,14 +3190,14 @@ void *thread_process_vanity(void *vargp)	{
 			count = 0;
 			if(FLAGMATRIX)	{
 					hextemp = key_mpz.GetBase16();
-					printf("Base key: %s thread %i\n",hextemp,thread_number);
+					printf("Base key ► %s thread %i\n",hextemp,thread_number);
 					fflush(stdout);
 					free(hextemp);
 			}
 			else	{
 				if(FLAGQUIET == 0)	{
 					hextemp = key_mpz.GetBase16();
-					printf("\rBase key: %s     \r",hextemp);
+					printf("\rBase key ► %s     \r",hextemp);
 					fflush(stdout);
 					free(hextemp);
 					THREADOUTPUT = 1;
@@ -3958,7 +3958,7 @@ pn.y.ModAdd(&GSn[i].y);
 							r = bsgs_secondcheck(&base_key,((j*1024) + i),k,&keyfound);
 							if(r)	{
 								hextemp = keyfound.GetBase16();
-								printf("[+] Thread Key found privkey %s   \n\a",hextemp);
+								printf("[+] \033[1;32m Thread Key found privkey %s \033[0m   \n\a",hextemp);
 								point_found = secp->ComputePublicKey(&keyfound);
 								aux_c = secp->GetPublicKeyHex(OriginalPointsBSGScompressed[k],point_found);
 								printf("[+] Publickey %s\n",aux_c);
@@ -4084,13 +4084,15 @@ void *thread_process_bsgs_random(void *vargp)	{
 #endif
 
 		if(FLAGMATRIX)	{
+				if(FLAGQUIET == 0){
 				aux_c = base_key.GetBase16();
 				printf("[+] Thread ► 0x%s  \n",aux_c);
 				fflush(stdout);
 				free(aux_c);
+				}
 		}
 		else{
-			if(FLAGQUIET == 0){
+			if(FLAGQUIET == 1){
 				aux_c = base_key.GetBase16();
 				printf("\r[+] Thread ► 0x%s  \r",aux_c);
 				fflush(stdout);
@@ -4207,7 +4209,7 @@ pn.y.ModAdd(&GSn[i].y);
 							r = bsgs_secondcheck(&base_key,((j*1024) + i),k,&keyfound);
 							if(r)	{
 								hextemp = keyfound.GetBase16();
-								printf("[+] Thread Key found privkey %s    \n\a",hextemp);
+								printf("[+] \033[1;32m Thread Key found privkey %s \033[0m    \n\a",hextemp);
 								point_found = secp->ComputePublicKey(&keyfound);
 								aux_c = secp->GetPublicKeyHex(OriginalPointsBSGScompressed[k],point_found);
 								printf("[+] Publickey %s\n",aux_c);
@@ -5012,7 +5014,7 @@ pn.y.ModAdd(&GSn[i].y);
 							r = bsgs_secondcheck(&base_key,((j*1024) + i),k,&keyfound);
 							if(r)	{
 								hextemp = keyfound.GetBase16();
-								printf("[+] Thread Key found privkey %s   \n\a",hextemp);
+								printf("[+] \033[1;32m Thread Key found privkey %s \033[0m   \n\a",hextemp);
 								point_found = secp->ComputePublicKey(&keyfound);
 								aux_c = secp->GetPublicKeyHex(OriginalPointsBSGScompressed[k],point_found);
 								printf("[+] Publickey %s\n",aux_c);
@@ -5270,7 +5272,7 @@ pn.y.ModAdd(&GSn[i].y);
 							r = bsgs_secondcheck(&base_key,((j*1024) + i),k,&keyfound);
 							if(r)	{
 								hextemp = keyfound.GetBase16();
-								printf("[+] Thread Key found privkey %s   \n\a",hextemp);
+								printf("[+] \033[1;32m Thread Key found privkey %s \033[0m   \n\a",hextemp);
 								point_found = secp->ComputePublicKey(&keyfound);
 								aux_c = secp->GetPublicKeyHex(OriginalPointsBSGScompressed[k],point_found);
 								printf("[+] Publickey %s\n",aux_c);
@@ -5557,7 +5559,7 @@ void *thread_process_bsgs_both(void *vargp)	{
 								r = bsgs_secondcheck(&base_key,((j*1024) + i),k,&keyfound);
 								if(r)	{
 									hextemp = keyfound.GetBase16();
-									printf("[+] Thread Key found privkey %s   \n\a",hextemp);
+									printf("[+] \033[1;32m Thread Key found privkey %s \033[0m  \n\a",hextemp);
 									point_found = secp->ComputePublicKey(&keyfound);
 									aux_c = secp->GetPublicKeyHex(OriginalPointsBSGScompressed[k],point_found);
 									printf("[+] Publickey %s\n",aux_c);
@@ -5773,17 +5775,17 @@ void menu() {
 	printf("-R          Random, this is the default behavior\n");
 	printf("-s ns       Number of seconds for the stats output, 0 to omit output.\n");
 	printf("-S          S is for SAVING in files BSGS data (Bloom filters and bPtable)\n");
-	printf("-6          to skip sha256 Checksum on data files");
+	printf("-6          to skip sha256 Checksum on data files\n");
 	printf("-t tn       Threads number, must be a positive integer\n");
 	printf("-v value    Search for vanity Address, only with -m vanity\n");
 	printf("-z value    Bloom size multiplier, only address,rmd160,vanity, xpoint, value >= 1\n");
 	printf("\n------------------------------------------------------Example-------------------------------------------------------\n\n");
-	printf("./keyhunt -m rmd160 -f tests/unsolvedpuzzles.rmd -b 66 -l compress -R -q -t 8\n\n");
+	printf("keyhunt.exe -m rmd160 -f tests/unsolvedpuzzles.rmd -b 66 -l compress -R -q -t 8\n\n");
 	printf("This line runs the program with 8 threads from the range 20000000000000000 to 40000000000000000 without stats output\n\n");
 	printf("------------------------------------------------------Developer-----------------------------------------------------\n\n");
 	printf("Developed by AlbertoBSD\tTips ₿TC: 1Coffee1jV4gB5gaXfHgSHDz9xx9QSECVW\n");
 	printf("Thanks to Iceland always helping and sharing his ideas.\nTips to Iceland: bc1q39meky2mn5qjq704zz0nnkl0v7kj4uz6r529at\n\n");
-	printf("-------------------------------------------------visit https:////www.cryptoxploit.com for tutorials-------------------\n");
+	printf("-------------------------------------------------visit https://www.cryptoxploit.com for tutorials-------------------\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -6253,7 +6255,7 @@ bool readFileAddress(char *fileName)	{
 			}
 			N = dataSize / sizeof(struct address_value);
 	
-			printf("[+] Allocating memory for %" PRIu64 " elements: %.2f MB\n",N,(double)(((double) sizeof(struct address_value)*N)/(double)1048576));
+			printf("[+] Allocating memory for %" PRIu64 " elements ► %.2f MB\n",N,(double)(((double) sizeof(struct address_value)*N)/(double)1048576));
 			
 			addressTable = (struct address_value*) malloc(dataSize);
 			if(addressTable == NULL)	{
@@ -6417,7 +6419,7 @@ bool forceReadFileAddressEth(char *fileName)	{
 	MAXLENGTHADDRESS = 20;		/*20 bytes beacuase we only need the data in binary*/
 	N = numberItems;
 	
-	printf("[+] Allocating memory for %" PRIu64 " elements: %.2f MB\n",numberItems,(double)(((double) sizeof(struct address_value)*numberItems)/(double)1048576));
+	printf("[+] Allocating memory for %" PRIu64 " elements ► %.2f MB\n",numberItems,(double)(((double) sizeof(struct address_value)*numberItems)/(double)1048576));
 	addressTable = (struct address_value*) malloc(sizeof(struct address_value)*numberItems);
 	checkpointer((void *)addressTable,__FILE__,"malloc","addressTable" ,__LINE__ -1 );
 	
@@ -6496,7 +6498,7 @@ bool forceReadFileXPoint(char *fileName)	{
 
 	MAXLENGTHADDRESS = 20;		/*20 bytes beacuase we only need the data in binary*/
 	
-	printf("[+] Allocating memory for %" PRIu64 " elements: %.2f MB\n",numberItems,(double)(((double) sizeof(struct address_value)*numberItems)/(double)1048576));
+	printf("[+] Allocating memory for %" PRIu64 " elements ► %.2f MB\n",numberItems,(double)(((double) sizeof(struct address_value)*numberItems)/(double)1048576));
 	addressTable = (struct address_value*) malloc(sizeof(struct address_value)*numberItems);
 	checkpointer((void *)addressTable,__FILE__,"malloc","addressTable" ,__LINE__ - 1);
 	
