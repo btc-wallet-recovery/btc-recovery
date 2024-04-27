@@ -54,10 +54,6 @@ Please read the CHANGELOG.md to see the new changes
 
 # Download and build
 
-This program was made in a linux environment.
-if you are windows user i strongly recommend to use WSL enviroment on Windows.
-it is available in the Microsoft store
-
 Please install on your system
 
 - git
@@ -82,10 +78,10 @@ apt install libgmp-dev -y
 To clone the repository
 
 ```
-git clone https://github.com/albertobsd/keyhunt.git
+git clone https://github.com/CryptoXploit/Keyhunt.git
 ```
 
-don't forget change to the keyhunt directory (But i'm not here to teach you linux commands)
+don't forget change to the keyhunt directory
 
 ```
 cd keyhunt
@@ -107,7 +103,8 @@ make legacy
 and then execute with `-h` to see the help
 
 ```
-./keyhunt -h
+./keyhunt -h (for newer systems)
+./keyhunt-legacy -h (for older systems)
 ```
 
 ## ¡Beta!
